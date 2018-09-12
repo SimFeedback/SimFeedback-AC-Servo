@@ -7,5 +7,5 @@ In this Version, motion commands will be send to a mirco controller (Arduino bas
 
 We will show you how to build the SFX-100 DIY actuators, the Electronics, the Software and get all of this up and running.
 
-Have a look in the [Wiki](./wiki)
+Have a look in the [Wiki](../../wiki)
 
