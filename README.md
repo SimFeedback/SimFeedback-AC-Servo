@@ -1,5 +1,6 @@
 # SimFeedback-AC-Servo
-SimFeedback AC Servo Version - Virtual Racing Motion Simulator 
+
+## SimFeedback AC Servo Version - Virtual Racing Motion Simulator 
 
 SimFeedback is a PC software, that will receive telemetry data from Racing games/simulations like iRacing, Assetto Corsa, Project Cars, ... . This data is used to create motion cues by transforming them into motion commands.
 
