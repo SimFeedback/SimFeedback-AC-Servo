@@ -20,3 +20,4 @@ Have a look in the [Wiki](../../wiki)
 
 ![](./Docs/SFX100.png)
 
+![](https://github.com/SimFeedback/SimFeedback-AC-Servo/raw/master/Docs/21_assembly.jpg)
