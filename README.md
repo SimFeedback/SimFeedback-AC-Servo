@@ -12,7 +12,11 @@ Have a look in the [Wiki](../../wiki)
 
 [![SimFeedback in motion](https://img.youtube.com/vi/oKyzBDKgwR0/0.jpg)](https://www.youtube.com/watch?v=oKyzBDKgwR0)
 
+### SimFeedback Software
+
 ![](./Docs/SimFeedback.png)
+
+### SFX-100 Linear Actuator Design
 
 ![](./Docs/SFX100.png)
 
