@@ -10,6 +10,16 @@ We will show you how to build the SFX-100 DIY actuators, the Electronics, the So
 
 Have a look in the [Wiki](../../wiki)
 
+Or get in contact ...
+
+https://forum.virtualracing.org/showthread.php/109282-DIY-3KW-Motion-Sim-Rig-Coming-Soon
+
+https://www.racedepartment.com/threads/the-simfeedback-ac-diy-motion-simulator-thread.159524/
+
+http://members.iracing.com/jforum/posts/list/3616928.page
+
+
+
 [![SimFeedback in motion](https://img.youtube.com/vi/oKyzBDKgwR0/0.jpg)](https://www.youtube.com/watch?v=oKyzBDKgwR0)
 
 ### SimFeedback Software
