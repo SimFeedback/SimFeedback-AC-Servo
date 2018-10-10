@@ -8,7 +8,6 @@
 *.licenseheader
 *.sln
 .vs/
-*.filters
 
 # Build results
 [Dd]ebug/
@@ -19,7 +18,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
-
+v15/
 
 # Roslyn cache directories
 *.ide/

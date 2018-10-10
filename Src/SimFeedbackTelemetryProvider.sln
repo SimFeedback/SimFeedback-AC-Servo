@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RF2TelemetryProvider", "RF2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACTelemetryProvider", "ACTelemetryProvider\ACTelemetryProvider.csproj", "{AADB7AD3-25BE-435A-BDED-259F2E55ACE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCSTelemetryProvider", "DCS\DCSTelemetryProvider\DCSTelemetryProvider.csproj", "{27E74598-0FD8-4E93-B009-66959A5CB4A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AADB7AD3-25BE-435A-BDED-259F2E55ACE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AADB7AD3-25BE-435A-BDED-259F2E55ACE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AADB7AD3-25BE-435A-BDED-259F2E55ACE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E74598-0FD8-4E93-B009-66959A5CB4A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E74598-0FD8-4E93-B009-66959A5CB4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E74598-0FD8-4E93-B009-66959A5CB4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E74598-0FD8-4E93-B009-66959A5CB4A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
