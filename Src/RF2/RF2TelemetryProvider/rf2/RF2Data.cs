@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 //
+using System;
 using System.Runtime.InteropServices;
 
 namespace SimFeedback.telemetry.rf2
@@ -36,6 +37,14 @@ namespace SimFeedback.telemetry.rf2
         public float rotAccelX;    // local pitch rotational acceleration (+ up) in radians/sec^2
         public float rotAccelY;    // local yaw rotational acceleration (+ right) in radians/sec^2
         public float rotAccelZ;    // local roll rotational acceleration (+ right) in radians/sec^2
+        public float velX;         // local lateral velocity (+ left) in m/s
+        public float velY;         // local vertical velocity (+ up) in m/s
+        public float velZ;         // local longitudinal velocity (+ back) in m/s
+        public float rotVelX;      // local pitch rotational velocity (+ up) in radians/sec
+        public float rotVelY;      // local yaw rotational velocity (+ right) in radians/sec
+        public float rotVelZ;      // local roll rotational velocity (+ right) in radians/sec
+
+
         public float speed;        // speed in m/s
         public float rpm;		   // engine rounds in r/min
 
@@ -62,6 +71,26 @@ namespace SimFeedback.telemetry.rf2
         public float RollDeg
         {
             get { return roll * 57.296f; }
+        }
+
+        public float SlipAngle
+        {
+            get
+            {
+                float slipAngle = 0.0f;
+                if (speed > 5)
+                {
+                    // Porsche GT3 Cup
+                    // Fahrzeug Länge: 4.564
+                    // Radstand: 1.980 x 2.456
+                    slipAngle = (float)(Math.Atan(
+                        (velX - rotVelY * (1.980f / 2))
+                        /
+                        (velZ - rotVelY * (2.456f / 2))
+                        ) * 180 / Math.PI);
+                }
+                return slipAngle;
+            }
         }
     };
 }
