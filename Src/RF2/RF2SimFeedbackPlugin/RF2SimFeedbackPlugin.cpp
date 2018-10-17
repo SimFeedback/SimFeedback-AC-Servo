@@ -221,6 +221,16 @@ void RF2SimFeedbackPlugin::UpdateTelemetry(const TelemInfoV01 &info)
 	data->rotAccelX = info.mLocalRotAccel.z;
 	//fprintf(logFile, "RotAccelX = %.2f rad/s^2, RotAccelY = %.2f rad/s^2, RotAccelZ = %.2f rad/s^2", data->rotAccelX, data->rotAccelY, data->rotAccelZ);
 
+	data->velX = info.mLocalVel.x;
+	data->velY = info.mLocalVel.y;
+	data->velZ = info.mLocalVel.z;
+	//fprintf(logFile, "VelX = %.2f m/s, VelY = %.2f m/s, VelZ = %.2f m/s", data->velX, data->velY, data->velZ);
+
+	data->rotVelX = info.mLocalRot.x;
+	data->rotVelY = info.mLocalRot.y;
+	data->rotVelZ = info.mLocalRot.z;
+	//fprintf(logFile, "RotVelX = %.2f rad/s, RotVelY = %.2f rad/s, RotVelZ = %.2f rad/s", data->rotVelX, data->rotVelY, data->rotVelZ);
+
 	const double metersPerSec = sqrt((info.mLocalVel.x * info.mLocalVel.x) +
 		(info.mLocalVel.y * info.mLocalVel.y) +
 		(info.mLocalVel.z * info.mLocalVel.z));

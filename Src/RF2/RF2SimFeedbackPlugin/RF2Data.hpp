@@ -42,14 +42,24 @@
 struct RF2Data {
 	//char version[16];	//
 	float time;			// time since started      
+
 	float pitch;		// pitch in radians (+ up)
 	float roll;			// roll in radians (+ right)
+
 	float accelX;		// local lateral acceleration (+ left) in m/s^2
 	float accelY;		// local vertical acceleration (+ up) in m/s^2
 	float accelZ;		// local longitudinal acceleration (+ back) in m/s^2
 	float rotAccelX;	// local pitch rotational acceleration (+ up) in radians/sec^2
 	float rotAccelY;	// local yaw rotational acceleration (+ right) in radians/sec^2
 	float rotAccelZ;	// local roll rotational acceleration (+ right) in radians/sec^2
+
+	float velX;			// local lateral velocity (+ left) in m/s
+	float velY;			// local vertical velocity (+ up) in m/s
+	float velZ;			// local longitudinal velocity (+ back) in m/s
+	float rotVelX;		// local pitch rotational velocity (+ up) in radians/sec
+	float rotVelY;		// local yaw rotational velocity (+ right) in radians/sec
+	float rotVelZ;		// local roll rotational velocity (+ right) in radians/sec
+
 	float speed;		// speed in m/s
 	float rpm;			// engine rounds in r/m
 };
