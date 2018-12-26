@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACTelemetryProvider", "ACTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCSTelemetryProvider", "DCS\DCSTelemetryProvider\DCSTelemetryProvider.csproj", "{27E74598-0FD8-4E93-B009-66959A5CB4A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLimits2", "NoLimits2\NoLimits2.csproj", "{1DCF01D5-1046-45D1-9CD5-58D6FD4F8CF5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A43FC598-5E10-4730-83F8-CA0F6164C988} = {A43FC598-5E10-4730-83F8-CA0F6164C988}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +38,10 @@ Global
 		{27E74598-0FD8-4E93-B009-66959A5CB4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27E74598-0FD8-4E93-B009-66959A5CB4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27E74598-0FD8-4E93-B009-66959A5CB4A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DCF01D5-1046-45D1-9CD5-58D6FD4F8CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DCF01D5-1046-45D1-9CD5-58D6FD4F8CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DCF01D5-1046-45D1-9CD5-58D6FD4F8CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DCF01D5-1046-45D1-9CD5-58D6FD4F8CF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
