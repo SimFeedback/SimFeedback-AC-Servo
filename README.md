@@ -21,7 +21,7 @@ http://members.iracing.com/jforum/posts/list/3616928.page
 Here is a great build blog from Rowan<br>
 https://www.rowanhick.com/sfx-100-build-and-running-guide
 
-Simfeedback and SFX-100 in action<br>
+SimFeedback and SFX-100 in action<br>
 [![SimFeedback in motion](https://img.youtube.com/vi/oKyzBDKgwR0/0.jpg)](https://www.youtube.com/watch?v=oKyzBDKgwR0)
 
 ### SimFeedback Software
