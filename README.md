@@ -8,6 +8,16 @@ In this Version, motion commands will be send to a mirco controller (Arduino bas
 
 We will show you how to build the SFX-100 DIY actuators, the Electronics, the Software and get all of this up and running.
 
+## News
+
+We got a new Website!
+
+https://opensfx.com/2019/02/20/welcome-to-our-new-site/
+
+If you're building your SFX system, or about to build one hopefully there's some good info along with community videos to help you out. 
+
+## wiki
+
 Have a look in the [Wiki](../../wiki)
 
 Or get in contact ...
