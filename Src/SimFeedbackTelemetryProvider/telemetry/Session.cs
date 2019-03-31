@@ -57,7 +57,10 @@ namespace SimFeedback.telemetry
             {
                 try
                 {
-                    return _dict[key];
+                    if (_dict.ContainsKey(key))
+                        return _dict[key];
+                    else
+                        return defaultValue;
                 }
                 catch (KeyNotFoundException) { return defaultValue; }
             }
