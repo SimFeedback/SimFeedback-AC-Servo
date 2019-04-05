@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 namespace SimFeedback.telemetry.r3e
 {
-    public class Constant
+    class Constant
     {
         public const string SharedMemoryName = "$R3E";
 
@@ -38,7 +38,7 @@ namespace SimFeedback.telemetry.r3e
         enum VersionMinor
         {
             // Minor version number to test against
-            R3E_VERSION_MINOR = 2
+            R3E_VERSION_MINOR = 6
         };
 
         enum Session
@@ -213,7 +213,15 @@ namespace SimFeedback.telemetry.r3e
     namespace Data
     {
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct Vector3<T>
+        internal struct RaceDuration<T>
+        {
+            public T Race1;
+            public T Race2;
+            public T Race3;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        internal struct Vector3<T>
         {
             public T X;
             public T Y;
@@ -221,7 +229,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct Orientation<T>
+        internal struct Orientation<T>
         {
             public T Pitch;
             public T Yaw;
@@ -229,7 +237,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct SectorStarts<T>
+        internal struct SectorStarts<T>
         {
             public T Sector1;
             public T Sector2;
@@ -237,27 +245,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct TireTemperature
-        {
-            public Single FrontLeft_Left;
-            public Single FrontLeft_Center;
-            public Single FrontLeft_Right;
-
-            public Single FrontRight_Left;
-            public Single FrontRight_Center;
-            public Single FrontRight_Right;
-
-            public Single RearLeft_Left;
-            public Single RearLeft_Center;
-            public Single RearLeft_Right;
-
-            public Single RearRight_Left;
-            public Single RearRight_Center;
-            public Single RearRight_Right;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct PlayerData
+        internal struct PlayerData
         {
             // Virtual physics time
             // Unit: Ticks (1 tick = 1/400th of a second)
@@ -314,6 +302,10 @@ namespace SimFeedback.telemetry.r3e
             // Current engine torque
             public Double EngineTorque;
 
+            // Current downforce
+            // Unit: Newtons (N)
+            public Double CurrentDownforce;
+
             // Currently unused
             public Double Voltage;
             public Double ErsLevel;
@@ -337,7 +329,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct Flags
+        internal struct Flags
         {
             // Whether yellow flag is currently active
             // -1 = no data
@@ -411,7 +403,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct CarDamage
+        internal struct CarDamage
         {
             // Range: 0.0 - 1.0
             // Note: -1.0 = N/A
@@ -436,7 +428,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct TireData<T>
+        internal struct TireData<T>
         {
             public T FrontLeft;
             public T FrontRight;
@@ -445,7 +437,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct PitMenuState
+        internal struct PitMenuState
         {
             // Pit menu preset
             public Int32 Preset;
@@ -466,7 +458,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct CutTrackPenalties
+        internal struct CutTrackPenalties
         {
             public Int32 DriveThrough;
             public Int32 StopAndGo;
@@ -476,7 +468,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct DRS
+        internal struct DRS
         {
             // If DRS is equipped and allowed
             // 0 = No, 1 = Yes, -1 = N/A
@@ -494,7 +486,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct PushToPass
+        internal struct PushToPass
         {
             public Int32 Available;
             public Int32 Engaged;
@@ -504,7 +496,33 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct AidSettings
+        internal struct TireTempInformation
+        {
+            public TireTemperature<Single> CurrentTemp;
+            public Single OptimalTemp;
+            public Single ColdTemp;
+            public Single HotTemp;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        internal struct BrakeTemp
+        {
+            public Single CurrentTemp;
+            public Single OptimalTemp;
+            public Single ColdTemp;
+            public Single HotTemp;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        internal struct TireTemperature<T>
+        {
+            public T Left;
+            public T Center;
+            public T Right;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        internal struct AidSettings
         {
             // ABS; -1 = N/A, 0 = off, 1 = on, 5 = currently active
             public Int32 Abs;
@@ -519,7 +537,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct Sectors<T>
+        internal struct Sectors<T>
         {
             public T Sector1;
             public T Sector2;
@@ -527,7 +545,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct DriverInfo
+        internal struct DriverInfo
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
             public byte[] Name; // UTF-8
@@ -537,6 +555,7 @@ namespace SimFeedback.telemetry.r3e
             public Int32 TeamId;
             public Int32 LiveryId;
             public Int32 ManufacturerId;
+            public Int32 UserId;
             public Int32 SlotId;
             public Int32 ClassPerformanceIndex;
             // Note: See the EngineType enum
@@ -547,12 +566,14 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct DriverData
+        internal struct DriverData
         {
             public DriverInfo DriverInfo;
             // Note: See the R3E.Constant.FinishStatus enum
             public Int32 FinishStatus;
             public Int32 Place;
+            // Based on performance index
+            public Int32 PlaceClass;
             public Single LapDistance;
             public Vector3<Single> Position;
             public Int32 TrackSector;
@@ -650,7 +671,7 @@ namespace SimFeedback.telemetry.r3e
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct Shared
+        internal struct Shared
         {
             //////////////////////////////////////////////////////////////////////////
             // Version
@@ -667,6 +688,7 @@ namespace SimFeedback.telemetry.r3e
             public Int32 GamePaused;
             public Int32 GameInMenus;
             public Int32 GameInReplay;
+            public Int32 GameUsingVr;
 
             public Int32 GameUnused1;
 
@@ -693,6 +715,13 @@ namespace SimFeedback.telemetry.r3e
             public Single LayoutLength;
             public SectorStarts<Single> SectorStartFactors;
 
+            // Race session durations
+            // Note: Index 0-2 = race 1-3
+            // Note: Value -1 = N/A
+            // Note: If both laps and minutes are more than 0, race session starts with minutes then adds laps
+            public RaceDuration<Int32> RaceSessionLaps;
+            public RaceDuration<Int32> RaceSessionMinutes;
+
             // The current race event index, for championships with multiple events
             // Note: 0-indexed, -1 = N/A
             public Int32 EventIndex;
@@ -702,7 +731,7 @@ namespace SimFeedback.telemetry.r3e
             public Int32 SessionType;
 
             // The current iteration of the current type of session (second qualifying session, etc.)
-            // Note: 0-indexed, -1 = N/A
+            // Note: 1 = first, 2 = second etc, -1 = N/A
             public Int32 SessionIteration;
 
             // If the session is time based, lap based or time based with an extra lap at the end
@@ -722,11 +751,17 @@ namespace SimFeedback.telemetry.r3e
             // -1 = no data available
             //  0 = not active
             //  1 = active
+            //  2 = 2x
+            //  3 = 3x
+            //  4 = 4x
             public Int32 TireWearActive;
 
             // -1 = no data
             //  0 = not active
             //  1 = active
+            //  2 = 2x
+            //  3 = 3x
+            //  4 = 4x
             public Int32 FuelUseActive;
 
             // Total number of laps in the race, or -1 if player is not in race mode (practice, test mode, etc.)
@@ -791,6 +826,8 @@ namespace SimFeedback.telemetry.r3e
 
             // Current position (1 = first place)
             public Int32 Position;
+            // Based on performance index
+            public Int32 PositionClass;
 
             // Note: See the R3E.Constant.FinishStatus enum
             public Int32 FinishStatus;
@@ -892,10 +929,15 @@ namespace SimFeedback.telemetry.r3e
             // Unit: Meter per second squared (m/s^2)
             public Vector3<Single> LocalAcceleration;
 
+            // Unit: Kilograms (kg)
+            // Note: Car + penalty weight + fuel
+            public Single TotalMass;
             // Unit: Liters (l)
-            // Note: Not valid for AI or remote players
+            // Note: Fuel per lap show estimation when not enough data, then max recorded fuel per lap
+            // Note: Not valid for remote players
             public Single FuelLeft;
             public Single FuelCapacity;
+            public Single FuelPerLap;
             // Unit: Celsius (C)
             // Note: Not valid for AI or remote players
             public Single EngineWaterTemp;
@@ -986,14 +1028,14 @@ namespace SimFeedback.telemetry.r3e
             // Percentage of dirt on tire (-1.0 = N/A)
             // Range: 0.0 - 1.0
             public TireData<Single> TireDirt;
-            // Brake temperature (-1.0 = N/A)
+
+            // Current temperature of three points across the tread of the tire (-1.0 = N/A)
+            // Optimum temperature
+            // Cold temperature
+            // Hot temperature
             // Unit: Celsius (C)
             // Note: Not valid for AI or remote players
-            public TireData<Single> BrakeTemp;
-            // Temperature of three points across the tread of the tire (-1.0 = N/A)
-            // Unit: Celsius (C)
-            // Note: Not valid for AI or remote players
-            public TireTemperature TireTemp;
+            public TireData<TireTempInformation> TireTemp;
 
             // Which type of tires the car has (option, prime, etc.)
             // Note: See the R3E.Constant.TireType enum
@@ -1003,6 +1045,18 @@ namespace SimFeedback.telemetry.r3e
             // Note: See the R3E.Constant.TireSubtype enum
             public Int32 TireSubtypeFront;
             public Int32 TireSubtypeRear;
+
+            // Current brake temperature (-1.0 = N/A)
+            // Optimum temperature
+            // Cold temperature
+            // Hot temperature
+            // Unit: Celsius (C)
+            // Note: Not valid for AI or remote players
+            public TireData<BrakeTemp> BrakeTemp;
+            // Brake pressure (-1.0 = N/A)
+            // Unit: Kilo Newtons (kN)
+            // Note: Not valid for AI or remote players
+            public TireData<Single> BrakePressure;
 
             // Reserved data
             public Int32 TireUnused1;
@@ -1030,6 +1084,113 @@ namespace SimFeedback.telemetry.r3e
             // Contains name and basic vehicle info for all drivers in place order
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
             public DriverData[] DriverData;
+
+            // Properties
+
+            public float Pitch
+            {
+                get
+                {
+                    return (float)((Player.Orientation.X) * (180 / Math.PI));
+                }
+            }
+
+            public float PitchVelocity
+            {
+                get
+                {
+                    return (float)((Player.LocalAngularVelocity.X) * (180 / Math.PI));
+                }
+            }
+
+            public float Roll
+            {
+                get
+                {
+                    return (float)(Player.Orientation.Z * (180 / Math.PI));
+                }
+            }
+
+            public float RollVelocity
+            {
+                get
+                {
+                    return (float)((Player.LocalAngularVelocity.Z) * (180 / Math.PI));
+                }
+            }
+
+            public float Yaw
+            {
+                get
+                {
+                    return (float)(Player.Orientation.Y * (180 / Math.PI));
+                }
+            }
+
+            public float YawVelocity
+            {
+                get
+                {
+                    return (float)((Player.LocalAngularVelocity.Y) * (180 / Math.PI));
+                }
+            }
+
+            public float Heave
+            {
+                get
+                {
+                    return (float)(Player.LocalAcceleration.Y / 9.81);
+                }
+            }
+
+            public float Surge
+            {
+                get
+                {
+                    return (float)(Player.LocalAcceleration.Z / -9.81);
+                }
+            }
+
+            public float Sway
+            {
+                get
+                {
+                    return (float)(Player.LocalAcceleration.X / -9.81);
+                }
+            }
+
+            public float Rpm
+            {
+                get
+                {
+                    return (float)(EngineRps*60);
+                }
+            }
+
+            public float RotationX
+            {
+                get
+                {
+                    return (float)((Player.Rotation.X) * (180 / Math.PI));
+                }
+            }
+
+            public float RotationY
+            {
+                get
+                {
+                    return (float)((Player.Rotation.Y) * (180 / Math.PI));
+                }
+            }
+
+            public float RotationZ
+            {
+                get
+                {
+                    return (float)((Player.Rotation.Z) * (180 / Math.PI));
+                }
+            }
+
         }
     }
 }

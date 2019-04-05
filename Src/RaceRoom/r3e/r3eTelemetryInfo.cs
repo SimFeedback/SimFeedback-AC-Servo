@@ -30,7 +30,7 @@ namespace SimFeedback.telemetry.r3e
     {
         private readonly Shared _teleData;
 
-        public r3eTelemetryInfo(Shared telemetryData)
+        internal r3eTelemetryInfo(Shared telemetryData)
         {
             _teleData = telemetryData;
         }
