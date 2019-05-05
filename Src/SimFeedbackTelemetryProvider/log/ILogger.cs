@@ -40,6 +40,8 @@ namespace SimFeedback.log
     /// </summary>
     public interface ILogger
     {
+        LOGLEVEL Loglevel { get; set; }
+
         /// <summary>
         /// Writes a message to the log file using loglevel: normal
         /// </summary>
