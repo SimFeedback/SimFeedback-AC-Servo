@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2018 Rausch IT
+// Copyright (c) 2019 Rausch IT
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy 
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,8 @@ using System.Threading;
 namespace SimFeedback.telemetry.dcs
 {
     /// <summary>
-    /// Use extradata=3 in hardware_settings_config.xml in C:\Users\USERNAME\Documents\my games\DiRT Rally\hardwaresettings
+    /// DCS TelemetryProvider
+    /// You need to replace the C:\Users\[USERNAME]\Saved Games\DCS\Scripts\Export.lua see Plugin dir.
     /// </summary>
     class DCSTelemetryProvider : AbstractTelemetryProvider
     {
@@ -46,7 +47,7 @@ namespace SimFeedback.telemetry.dcs
         public DCSTelemetryProvider() : base()
         {
             Author = "saxxon66";
-            Version = "v1.0";
+            Version = "v1.1";
             BannerImage = @"img\banner_simfeedback.png"; // Image shown on top of the profiles tab
             IconImage = @"img\simfeedback.png";          // Icon used in the tree view for the profile
             TelemetryUpdateFrequency = 100;     // the update frequency in samples per second
@@ -136,9 +137,7 @@ namespace SimFeedback.telemetry.dcs
 
                     Byte[] received = socket.Receive(ref _senderIP);
                     string resp = Encoding.UTF8.GetString(received);
-                    //LogDebug(resp);
-
-                    DCSData telemetryData = pareseReponse(resp);
+                    DCSData telemetryData = ParseReponse(resp);
 
                     IsRunning = true;
 
@@ -148,7 +147,6 @@ namespace SimFeedback.telemetry.dcs
                     lastTelemetryData = telemetryData;
                     
                     sw.Restart();
-                    Thread.Sleep(SamplePeriod);
                 }
                 catch (Exception)
                 {
@@ -169,17 +167,28 @@ namespace SimFeedback.telemetry.dcs
             Log("Listener thread stopped, DCSTelemetryProvider.Thread");
         }
 
-        private DCSData pareseReponse(string resp)
+        private DCSData ParseReponse(string resp)
         {
             DCSData telemetryData = new DCSData();
 
             string[] tokens = resp.Split(';');
-            if (tokens.Length == 4)
+            if (tokens.Length == 11)
             {
                 telemetryData.time = float.Parse(tokens[0], CultureInfo.InvariantCulture);
+
                 telemetryData.pitch = float.Parse(tokens[1], CultureInfo.InvariantCulture);
                 telemetryData.roll = float.Parse(tokens[2], CultureInfo.InvariantCulture);
                 telemetryData.yaw = float.Parse(tokens[3], CultureInfo.InvariantCulture);
+
+                telemetryData.pitchrate = float.Parse(tokens[4], CultureInfo.InvariantCulture);
+                telemetryData.rollrate = float.Parse(tokens[5], CultureInfo.InvariantCulture);
+                telemetryData.yawrate = float.Parse(tokens[6], CultureInfo.InvariantCulture);
+
+                telemetryData.sway = float.Parse(tokens[7], CultureInfo.InvariantCulture);
+                telemetryData.heave = float.Parse(tokens[8], CultureInfo.InvariantCulture);
+                telemetryData.surge = float.Parse(tokens[9], CultureInfo.InvariantCulture);
+
+                telemetryData.airspeed = float.Parse(tokens[10], CultureInfo.InvariantCulture);
             }
 
             return telemetryData;

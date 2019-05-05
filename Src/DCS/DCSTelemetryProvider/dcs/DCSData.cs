@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2018 Rausch IT
+// Copyright (c) 2019 Rausch IT
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy 
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,16 @@ namespace SimFeedback.telemetry.dcs
 {
     internal class DCSData
     {
-        public float time;
-        public float yaw;
-        public float pitch;
-        public float roll;
+        public float time;      // sec
+        public float pitch;     // rad
+        public float pitchrate; // rad per sec
+        public float roll;      // rad
+        public float rollrate;  // rad per sec
+        public float yaw;       // rad
+        public float yawrate;   // rad per sec
+        public float sway;      // G
+        public float heave;     // G
+        public float surge;     // G
+        public float airspeed;  // kmh
     }
 }

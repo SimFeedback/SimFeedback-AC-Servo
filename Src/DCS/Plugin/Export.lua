@@ -1,5 +1,5 @@
 --
--- Copyright (c) 2018 Rausch IT
+-- Copyright (c) 2019 Rausch IT
 --
 -- Permission is hereby granted, free of charge, to any person obtaining a copy 
 -- of this software and associated documentation files (the "Software"), to deal
@@ -21,12 +21,8 @@
 --
 --
 -- SimFeedback DCS Lua script to export position and orientation data
-
--- SimFeedbackExporter {}
-
---local lfs = require('lfs')
---LUA_PATH = "?;?.lua;"..lfs.currentdir().."/Scripts/?.lua"
---require 'Vector'
+--
+-- Version 1.1
 
 local udpServer = nil
 
@@ -35,7 +31,6 @@ local t0 = 0
 local PrevExport                    = {}
 PrevExport.LuaExportStart           = LuaExportStart
 PrevExport.LuaExportStop            = LuaExportStop
-PrevExport.LuaExportBeforeNextFrame = LuaExportBeforeNextFrame
 PrevExport.LuaExportAfterNextFrame  = LuaExportAfterNextFrame
 
 local default_output_file = nil
@@ -70,54 +65,24 @@ function LuaExportStart()
 	udpServer:setpeername(host, port)
 end
 
-
-function LuaExportBeforeNextFrame()
-
-end
-
-
 function LuaExportAfterNextFrame()
----[[
 	local curTime = LoGetModelTime()
 	if curTime >= t0 then
 		-- runs 100 times per second
 		t0 = curTime + .01
 
 		local pitch, roll, yaw = LoGetADIPitchBankYaw()
-		-- local velocityvector = LoGetVectorVelocity()
-		-- local RotationalVelocity = LoGetAngularVelocity()
-		-- local VerticalVelocity = LoGetVerticalVelocity()		
+		local RotationalVelocity = LoGetAngularVelocity()
+		local airspeed = LoGetTrueAirSpeed() * 3.6
+		local accel = LoGetAccelerationUnits()
 		
 		if udpServer then
-			socket.try(udpServer:send(string.format("%.3f;%.3f;%.3f;%.3f", t0, 57.3*pitch, 57.3*roll, 57.3*yaw)))
+			socket.try(udpServer:send(string.format("%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%f", t0, pitch, roll, yaw, RotationalVelocity.z, RotationalVelocity.x, RotationalVelocity.y, accel.z, accel.y, accel.x, airspeed)))
 		end
 
-		--default_output_file:write(string.format("%.3f%.2f%.2f%.2f\n", t0, pitch, bank, yaw))
 	end
---]]
 end
 
---[[
-function LuaExportActivityNextEvent(t)
-	local t0 = t
-
-    if LoGetPlayerPlaneId() > 0 then
-        local data = LoGetSelfData()
-        
-        local yaw   = 2.0 * math.pi - data.Heading 
-        local pitch = data.Pitch
-        local roll  = data.Bank
-		
-		if udpServer then
-			socket.try(udpServer:send(string.format("%.3f;%.3f;%.3f;%.3f", t0, 57.3*pitch, 57.3*roll, 57.3*yaw)))
-		end
-		
-	end
-	-- 100 samples/sec
-    t0 = t0 + .01
-	return t0	
-end
---]]
 
 function LuaExportStop()
 -- Works once just after mission stop.

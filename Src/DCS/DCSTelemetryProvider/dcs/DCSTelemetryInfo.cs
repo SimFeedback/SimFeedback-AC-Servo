@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2018 Rausch IT
+// Copyright (c) 2019 Rausch IT
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy 
 // of this software and associated documentation files (the "Software"), to deal
@@ -36,11 +36,85 @@ namespace SimFeedback.telemetry.dcs
             this.lastTelemetryData = lastTelemetryData;
         }
 
+        private float PitchRate
+        {
+            get
+            {
+                return (telemetryData.pitchrate - lastTelemetryData.pitchrate) / (telemetryData.time - lastTelemetryData.time);
+            }
+        }
+
+        private float RollRate
+        {
+            get
+            {
+                return (telemetryData.rollrate - lastTelemetryData.rollrate) / (telemetryData.time - lastTelemetryData.time);
+            }
+        }
+
+        private float YawRate
+        {
+            get
+            {
+                return (telemetryData.yawrate - lastTelemetryData.yawrate) / (telemetryData.time - lastTelemetryData.time);
+            }
+        }
+
+
+        private float Roll
+        {
+            get
+            {
+                return (float)Math.Sin(telemetryData.roll);
+            }
+        }
+
+        private float Pitch
+        {
+            get
+            {
+                return (float)Math.Sin(telemetryData.pitch);
+            }
+        }
+
+        private float Yaw
+        {
+            get
+            {
+                return (float)Math.Sin(telemetryData.yaw);
+            }
+        }
+
+
         public TelemetryValue TelemetryValueByName(string name)
         {
             TelemetryValue tv;
             switch (name)
             {
+                case "roll":
+                    tv = new DCSTelemetryValue("roll", Roll);
+                    break;
+
+                case "pitch":
+                    tv = new DCSTelemetryValue("pitch", Pitch);
+                    break;
+
+                case "yaw":
+                    tv = new DCSTelemetryValue("yaw", Yaw);
+                    break;
+
+                case "rollrate":
+                    tv = new DCSTelemetryValue("rollrate", RollRate);
+                    break;
+
+                case "pitchrate":
+                    tv = new DCSTelemetryValue("pitchrate", PitchRate);
+                    break;
+
+                case "yawrate":
+                    tv = new DCSTelemetryValue("yawrate", YawRate);
+                    break;
+
                 default:
                     object data;
                     Type eleDataType = typeof(DCSData);
