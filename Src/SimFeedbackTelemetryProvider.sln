@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLimits2", "NoLimits2\NoLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceRoom", "RaceRoom\RaceRoom.csproj", "{47C254A0-A270-42AD-960D-983419E3EC4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FH4", "FH4\FH4.csproj", "{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{47C254A0-A270-42AD-960D-983419E3EC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47C254A0-A270-42AD-960D-983419E3EC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47C254A0-A270-42AD-960D-983419E3EC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
