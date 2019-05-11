@@ -29,14 +29,16 @@ namespace SimFeedback.telemetry.dcs
     {
         private DCSData telemetryData;
         private DCSData lastTelemetryData;
+        private Session session;
 
-        public DCSTelemetryInfo(DCSData telemetryData, DCSData lastTelemetryData)
+        public DCSTelemetryInfo(DCSData telemetryData, DCSData lastTelemetryData, Session session)
         {
             this.telemetryData = telemetryData;
             this.lastTelemetryData = lastTelemetryData;
+            this.session = session;
         }
 
-        private float PitchRate
+        private float PitchRoc
         {
             get
             {
@@ -44,7 +46,15 @@ namespace SimFeedback.telemetry.dcs
             }
         }
 
-        private float RollRate
+        private float PitchRate
+        {
+            get
+            {
+                return telemetryData.pitchrate;
+            }
+        }
+
+        private float RollRoc
         {
             get
             {
@@ -52,7 +62,15 @@ namespace SimFeedback.telemetry.dcs
             }
         }
 
-        private float YawRate
+        private float RollRate
+        {
+            get
+            {
+                return telemetryData.rollrate;
+            }
+        }
+
+        private float YawRoc
         {
             get
             {
@@ -60,12 +78,19 @@ namespace SimFeedback.telemetry.dcs
             }
         }
 
+        private float YawRate
+        {
+            get
+            {
+                return telemetryData.yawrate;
+            }
+        }
 
         private float Roll
         {
             get
             {
-                return (float)Math.Sin(telemetryData.roll);
+                return (float)(Math.Cos(telemetryData.pitch) * Math.Sin(telemetryData.roll));
             }
         }
 
@@ -113,6 +138,18 @@ namespace SimFeedback.telemetry.dcs
 
                 case "yawrate":
                     tv = new DCSTelemetryValue("yawrate", YawRate);
+                    break;
+
+                case "rollroc":
+                    tv = new DCSTelemetryValue("rollroc", RollRoc);
+                    break;
+
+                case "pitchroc":
+                    tv = new DCSTelemetryValue("pitchroc", PitchRoc);
+                    break;
+
+                case "yawroc":
+                    tv = new DCSTelemetryValue("yawroc", YawRoc);
                     break;
 
                 default:

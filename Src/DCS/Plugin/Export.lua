@@ -22,7 +22,7 @@
 --
 -- SimFeedback DCS Lua script to export position and orientation data
 --
--- Version 1.1
+-- Version 1.2
 
 local udpServer = nil
 
@@ -75,9 +75,10 @@ function LuaExportAfterNextFrame()
 		local RotationalVelocity = LoGetAngularVelocity()
 		local airspeed = LoGetTrueAirSpeed() * 3.6
 		local accel = LoGetAccelerationUnits()
-		
+		local aoa = LoGetAngleOfAttack()
+
 		if udpServer then
-			socket.try(udpServer:send(string.format("%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%f", t0, pitch, roll, yaw, RotationalVelocity.z, RotationalVelocity.x, RotationalVelocity.y, accel.z, accel.y, accel.x, airspeed)))
+			socket.try(udpServer:send(string.format("%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%.3f;%f;%f", t0, pitch, roll, yaw, RotationalVelocity.z, RotationalVelocity.x, RotationalVelocity.y, RotationalVelocity.z, RotationalVelocity.x, RotationalVelocity.y, accel.z, accel.y, accel.x, airspeed, aoa)))
 		end
 
 	end
@@ -99,3 +100,7 @@ function LuaExportStop()
 		udpServer:close()
 	end
 end
+
+--local SimShakerlfs=require('lfs'); dofile(SimShakerlfs.writedir()..'Scripts/SimShaker.lua')
+
+--dofile(lfs.writedir()..[[Scripts\SimShaker-export-core\ExportCore.lua]])

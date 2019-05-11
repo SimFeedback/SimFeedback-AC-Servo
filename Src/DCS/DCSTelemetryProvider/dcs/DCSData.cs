@@ -27,13 +27,17 @@ namespace SimFeedback.telemetry.dcs
         public float time;      // sec
         public float pitch;     // rad
         public float pitchrate; // rad per sec
+        public float pitchroc; // rad per (sec*sec)
         public float roll;      // rad
         public float rollrate;  // rad per sec
+        public float rollroc;  // rad per (sec*sec)
         public float yaw;       // rad
         public float yawrate;   // rad per sec
+        public float yawroc;   // rad per (sec*sec)
         public float sway;      // G
         public float heave;     // G
         public float surge;     // G
         public float airspeed;  // kmh
+        public float aoa;      // rad
     }
 }

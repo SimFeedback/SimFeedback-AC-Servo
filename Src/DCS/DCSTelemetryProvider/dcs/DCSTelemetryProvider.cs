@@ -46,10 +46,10 @@ namespace SimFeedback.telemetry.dcs
 
         public DCSTelemetryProvider() : base()
         {
-            Author = "saxxon66";
-            Version = "v1.1";
-            BannerImage = @"img\banner_simfeedback.png"; // Image shown on top of the profiles tab
-            IconImage = @"img\simfeedback.png";          // Icon used in the tree view for the profile
+            Author = "harryharry + saxxon66";
+            Version = "v1.2";
+            BannerImage = @"img\banner_dcs.png"; // Image shown on top of the profiles tab
+            IconImage = @"img\dcs.png";          // Icon used in the tree view for the profile
             TelemetryUpdateFrequency = 100;     // the update frequency in samples per second
         }
 
@@ -109,6 +109,8 @@ namespace SimFeedback.telemetry.dcs
             socket.ExclusiveAddressUse = false;
             socket.Client.Bind(new IPEndPoint(IPAddress.Any, PORTNUM));
 
+            Session session = new Session();
+
             Log("Listener thread started (IP: " + IP + ":" + PORTNUM.ToString() + ") DCSTelemetryProvider.Thread");
 
             while (!isStopped)
@@ -142,7 +144,7 @@ namespace SimFeedback.telemetry.dcs
                     IsRunning = true;
 
                     TelemetryEventArgs args = new TelemetryEventArgs(
-                        new DCSTelemetryInfo(telemetryData, lastTelemetryData));
+                        new DCSTelemetryInfo(telemetryData, lastTelemetryData, session));
                     RaiseEvent(OnTelemetryUpdate, args);
                     lastTelemetryData = telemetryData;
                     
@@ -172,7 +174,7 @@ namespace SimFeedback.telemetry.dcs
             DCSData telemetryData = new DCSData();
 
             string[] tokens = resp.Split(';');
-            if (tokens.Length == 11)
+            if (tokens.Length == 15)
             {
                 telemetryData.time = float.Parse(tokens[0], CultureInfo.InvariantCulture);
 
@@ -184,11 +186,16 @@ namespace SimFeedback.telemetry.dcs
                 telemetryData.rollrate = float.Parse(tokens[5], CultureInfo.InvariantCulture);
                 telemetryData.yawrate = float.Parse(tokens[6], CultureInfo.InvariantCulture);
 
-                telemetryData.sway = float.Parse(tokens[7], CultureInfo.InvariantCulture);
-                telemetryData.heave = float.Parse(tokens[8], CultureInfo.InvariantCulture);
-                telemetryData.surge = float.Parse(tokens[9], CultureInfo.InvariantCulture);
+                telemetryData.pitchroc = float.Parse(tokens[7], CultureInfo.InvariantCulture);
+                telemetryData.rollroc = float.Parse(tokens[8], CultureInfo.InvariantCulture);
+                telemetryData.yawroc = float.Parse(tokens[9], CultureInfo.InvariantCulture);
 
-                telemetryData.airspeed = float.Parse(tokens[10], CultureInfo.InvariantCulture);
+                telemetryData.sway = float.Parse(tokens[10], CultureInfo.InvariantCulture);
+                telemetryData.heave = float.Parse(tokens[11], CultureInfo.InvariantCulture);
+                telemetryData.surge = float.Parse(tokens[12], CultureInfo.InvariantCulture);
+
+                telemetryData.airspeed = float.Parse(tokens[13], CultureInfo.InvariantCulture);
+                telemetryData.aoa = float.Parse(tokens[14], CultureInfo.InvariantCulture);
             }
 
             return telemetryData;
