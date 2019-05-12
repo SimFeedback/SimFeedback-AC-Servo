@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2027
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimFeedbackTelemetryProvider", "SimFeedbackTelemetryProvider\SimFeedbackTelemetryProvider.csproj", "{A43FC598-5E10-4730-83F8-CA0F6164C988}"
 EndProject
@@ -19,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceRoom", "RaceRoom\RaceRoom.csproj", "{47C254A0-A270-42AD-960D-983419E3EC4F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FH4", "FH4\FH4.csproj", "{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KartKraftTelemetryProvider", "KartKraftTelemetryProvider\KartKraftTelemetryProvider.csproj", "{BA7CBA2B-28D0-4D4C-92B1-15A7F52AAD2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{663AD79E-59CA-4ECA-9CC5-E98C2EB98B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7CBA2B-28D0-4D4C-92B1-15A7F52AAD2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7CBA2B-28D0-4D4C-92B1-15A7F52AAD2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7CBA2B-28D0-4D4C-92B1-15A7F52AAD2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7CBA2B-28D0-4D4C-92B1-15A7F52AAD2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
