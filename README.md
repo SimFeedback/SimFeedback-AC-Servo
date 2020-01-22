@@ -24,8 +24,6 @@ Or get in contact ...
 
 https://forum.virtualracing.org/showthread.php/109282-DIY-3KW-Motion-Sim-Rig-Coming-Soon
 
-https://www.racedepartment.com/threads/the-simfeedback-ac-diy-motion-simulator-thread.159524/
-
 http://members.iracing.com/jforum/posts/list/3616928.page
 
 Here is a great build blog from Rowan<br>
