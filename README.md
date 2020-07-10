@@ -20,7 +20,7 @@ Please do not make any further donations.
 
 In the meantime we are working on a solution.
 
-If you have just finished your project, please let us know info@opensfx . We will find a way together.
+If you have just finished your project, please let us know info at opensfx.com . We will find a way together.
 
 ### Das Projekt macht eine Pause - Bitte nicht mehr spenden! Wir benötigen etwas Zeit um uns umzustrukturieren aufgrund von kommerziellem Missbrauch diese Projektes. Wir sind bald wieder zurück! ####
 Leider gibt es immer mehr Verstöße gegen die Lizenzbedingungen und immer mehr Leute versuche mit diesem Projekt Geld zu machen.
@@ -30,7 +30,7 @@ Bitte seht davon ab weitere Spenden zu leisten.
 
 In der Zwischenzeit arbeiten wir daran ein Lösung zu finden.
 
-Solltet ihr euer Projekt fertig gestellt haben, dann wendet Euch bitte an info@opensfx.com . Wir werden zusammen einen Weg finden.
+Solltet ihr euer Projekt fertig gestellt haben, dann wendet Euch bitte an info at opensfx.com . Wir werden zusammen einen Weg finden.
 
 
 
